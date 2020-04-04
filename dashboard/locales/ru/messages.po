@@ -27,8 +27,8 @@ msgid "<0>Filtered</0>: {itemsCount} / {allItemsCount}"
 msgstr "<0>Отфильтровано</0>: {itemsCount} / {allItemsCount}"
 
 #: client/browser-check.tsx:11
-msgid "<0>Your browser does not support all Kontena Lens features. </0> Please consider using another browser."
-msgstr "<0>Ваш браузер не поддерживает все возможности Kontena Lens. </0> Пожалуйста рассмотрите использование другого современного браузера."
+msgid "<0>Your browser does not support all Lens features. </0> Please consider using another browser."
+msgstr "<0>Ваш браузер не поддерживает все возможности Lens. </0> Пожалуйста рассмотрите использование другого современного браузера."
 
 #: client/components/dock/create-resource.tsx:56
 msgid "<0>{0}</0> successfully created"
@@ -1080,8 +1080,8 @@ msgstr "IP балансировщика нагрузки"
 msgid "Loading"
 msgstr "Загрузка"
 
-#: client/components/+workloads-pods/pod-menu.tsx:67
-#: client/components/+workloads-pods/pod-menu.tsx:68
+#: client/components/+workloads-pods/pod-menu.tsx:86
+#: client/components/+workloads-pods/pod-menu.tsx:87
 msgid "Logs"
 msgstr "Логи"
 
@@ -1503,7 +1503,7 @@ msgstr "Селектор подов"
 msgid "Pod Status"
 msgstr "Статус подов"
 
-#: client/components/+workloads-pods/pod-menu.tsx:44
+#: client/components/+workloads-pods/pod-menu.tsx:63
 msgid "Pod shell"
 msgstr "Командная строка пода"
 
@@ -1967,7 +1967,7 @@ msgid "Set quota"
 msgstr "Установить квоту"
 
 #: client/components/+nodes/node-menu.tsx:48
-#: client/components/+workloads-pods/pod-menu.tsx:45
+#: client/components/+workloads-pods/pod-menu.tsx:64
 msgid "Shell"
 msgstr "Командная строка"
 

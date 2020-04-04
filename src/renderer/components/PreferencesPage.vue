@@ -5,34 +5,6 @@
       <div class="header sticky-top">
         <h2>Preferences</h2>
       </div>
-      <!-- <div class="row">
-        <div class="col-3" />
-        <div ref="content" class="global-settings col-6">
-          <h2>Kontena Lens PRO License</h2>
-
-          <b-form-group
-            label="No Kontena Lens PRO license assigned. Assign license by entering license key below:"
-            label-for="input-license-key"
-            v-if="!licenceData || licenceData.status !== 'valid'"
-          >
-            <b-form-input
-              id="input-license-key"
-              v-model="licenseKey"
-              trim
-              @blur="onLicenseKeySave"
-              placeholder="Enter license key"
-              :disabled="!isLoggedIn"
-              :state="errors.licenseKey"
-            />
-          </b-form-group>
-          <div v-if="licenceData">
-            <p v-if="licenceData.status === 'valid'">
-              Valid Kontena Lens PRO license assigned. Valid until {{ licenceData.valid_until }}<span v-if="licenceData.recurring">(renews automatically)</span>.
-            </p>
-          </div>
-        </div>
-        <div class="col-3" />
-      </div> -->
       <div class="row">
         <div class="col-3" />
         <div ref="content" class="global-settings col-6">
@@ -125,7 +97,7 @@
           <h2>Telemetry & Usage Tracking</h2>
           <b-form-group
             label-for="checkbox-allow-telemetry"
-            description="Telemetry & usage data is collected to continuously improve the Kontena Lens experience."
+            description="Telemetry & usage data is collected to continuously improve the Lens experience."
           >
             <b-form-checkbox
               id="checkbox-allow-telemetry"

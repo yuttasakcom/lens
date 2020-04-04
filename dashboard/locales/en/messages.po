@@ -27,8 +27,8 @@ msgid "<0>Filtered</0>: {itemsCount} / {allItemsCount}"
 msgstr "<0>Filtered</0>: {itemsCount} / {allItemsCount}"
 
 #: client/browser-check.tsx:11
-msgid "<0>Your browser does not support all Kontena Lens features. </0> Please consider using another browser."
-msgstr "<0>Your browser does not support all Kontena Lens features. </0> Please consider using another browser."
+msgid "<0>Your browser does not support all Lens features. </0> Please consider using another browser."
+msgstr "<0>Your browser does not support all Lens features. </0> Please consider using another browser."
 
 #: client/components/dock/create-resource.tsx:56
 msgid "<0>{0}</0> successfully created"
@@ -1080,8 +1080,8 @@ msgstr ""
 msgid "Loading"
 msgstr "Loading"
 
-#: client/components/+workloads-pods/pod-menu.tsx:67
-#: client/components/+workloads-pods/pod-menu.tsx:68
+#: client/components/+workloads-pods/pod-menu.tsx:86
+#: client/components/+workloads-pods/pod-menu.tsx:87
 msgid "Logs"
 msgstr "Logs"
 
@@ -1503,7 +1503,7 @@ msgstr ""
 msgid "Pod Status"
 msgstr "Pod Status"
 
-#: client/components/+workloads-pods/pod-menu.tsx:44
+#: client/components/+workloads-pods/pod-menu.tsx:63
 msgid "Pod shell"
 msgstr "Pod shell"
 
@@ -1967,7 +1967,7 @@ msgid "Set quota"
 msgstr ""
 
 #: client/components/+nodes/node-menu.tsx:48
-#: client/components/+workloads-pods/pod-menu.tsx:45
+#: client/components/+workloads-pods/pod-menu.tsx:64
 msgid "Shell"
 msgstr ""
 
