@@ -24,7 +24,7 @@ export class ServiceDetails extends React.Component<Props> {
     const { object: service } = this.props
     const targetPort = port.split(":")[0]
 
-    apiBase.get(`/services/${service.getNs()}/${service.getName()}/port-forward/${targetPort}`);
+    apiBase.post(`/services/${service.getNs()}/${service.getName()}/port-forward/${targetPort}`, {});
   }
 
   render() {
