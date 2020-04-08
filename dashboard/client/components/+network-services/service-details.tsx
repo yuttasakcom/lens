@@ -11,16 +11,31 @@ import { Service, serviceApi } from "../../api/endpoints";
 import { _i18n } from "../../i18n";
 import { apiManager } from "../../api/api-manager";
 import { KubeObjectMeta } from "../kube-object/kube-object-meta";
+import { Icon } from "../icon";
+import { terminalStore } from "../dock/terminal.store";
+import { apiBase } from "../../api"
 
 interface Props extends KubeObjectDetailsProps<Service> {
 }
 
 @observer
 export class ServiceDetails extends React.Component<Props> {
+  async portForward(port: string) {
+    const { object: service } = this.props
+    const targetPort = port.split(":")[0]
+
+    apiBase.get(`/services/${service.getNs()}/${service.getName()}/port-forward/${targetPort}`);
+  }
+
   render() {
     const { object: service } = this.props;
     if (!service) return;
     const { spec } = service;
+    const portBadges = service.getPorts().map((port) => {
+      return([
+        <Badge key={port} label={port}> <Icon material="open_in_new" small={true} onClick={() => this.portForward(port) } title={_i18n._(t`Open in a browser (port-forward)`)}/></Badge>
+      ])
+    })
     return (
       <div className="ServicesDetails">
         <KubeObjectMeta object={service}/>
@@ -50,7 +65,8 @@ export class ServiceDetails extends React.Component<Props> {
         )}
 
         <DrawerItem name={<Trans>Ports</Trans>} labelsOnly>
-          {service.getPorts().map(port => <Badge key={port} label={port}/>)}
+          {portBadges}
+
         </DrawerItem>
 
         {spec.type === "LoadBalancer" && spec.loadBalancerIP && (
