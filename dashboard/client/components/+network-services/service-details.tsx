@@ -11,9 +11,8 @@ import { Service, serviceApi } from "../../api/endpoints";
 import { _i18n } from "../../i18n";
 import { apiManager } from "../../api/api-manager";
 import { KubeObjectMeta } from "../kube-object/kube-object-meta";
-import { Icon } from "../icon";
-import { terminalStore } from "../dock/terminal.store";
 import { apiBase } from "../../api"
+import { Link } from "react-router-dom";
 
 interface Props extends KubeObjectDetailsProps<Service> {
 }
@@ -33,7 +32,7 @@ export class ServiceDetails extends React.Component<Props> {
     const { spec } = service;
     const portBadges = service.getPorts().map((port) => {
       return([
-        <Badge key={port} label={port}> <Icon material="open_in_new" small={true} onClick={() => this.portForward(port) } title={_i18n._(t`Open in a browser (port-forward)`)}/></Badge>
+        <li><Link to="" title="Open in a browser" onClick={() => this.portForward(port) }>{port}</Link></li>
       ])
     })
     return (
@@ -64,9 +63,10 @@ export class ServiceDetails extends React.Component<Props> {
           </DrawerItem>
         )}
 
-        <DrawerItem name={<Trans>Ports</Trans>} labelsOnly>
-          {portBadges}
-
+        <DrawerItem name={<Trans>Ports</Trans>}>
+          <ul className="portList">
+            {portBadges}
+          </ul>
         </DrawerItem>
 
         {spec.type === "LoadBalancer" && spec.loadBalancerIP && (
