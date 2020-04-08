@@ -66,7 +66,7 @@ class PortForwardRoute extends LensApi {
       kind: "service", name: params.service, namespace: params.namespace, port: params.port
     })
     if (!portForward) {
-      logger.info(`Creating a new port-forward ${params.namespace}/${params.name}:${params.port}`)
+      logger.info(`Creating a new port-forward ${params.namespace}/${params.service}:${params.port}`)
       portForward = new PortForward({
         kind: "service",
         namespace: params.namespace,
