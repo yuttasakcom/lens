@@ -19,7 +19,8 @@ interface Props extends KubeObjectDetailsProps<Service> {
 
 @observer
 export class ServiceDetails extends React.Component<Props> {
-  async portForward(port: string) {
+  async portForward(event: React.MouseEvent, port: string) {
+    event.preventDefault();
     const { object: service } = this.props
     const targetPort = port.split(":")[0]
 
@@ -32,7 +33,7 @@ export class ServiceDetails extends React.Component<Props> {
     const { spec } = service;
     const portBadges = service.getPorts().map((port) => {
       return([
-        <li><Link to="" title="Open in a browser" onClick={() => this.portForward(port) }>{port}</Link></li>
+        <li><Link to="" title="Open in a browser" onClick={(e) => this.portForward(e, port) }>{port}</Link></li>
       ])
     })
     return (
