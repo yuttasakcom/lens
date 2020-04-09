@@ -57,7 +57,7 @@ class PortForward {
       }
     })
     try {
-      tcpPortUsed.waitUntilUsed(this.localPort, 500, 3000)
+      await tcpPortUsed.waitUntilUsed(this.localPort, 500, 3000)
       return true
     } catch (error) {
       this.process.kill()
