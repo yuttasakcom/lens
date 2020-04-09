@@ -7,7 +7,7 @@ import { DrawerItem, DrawerTitle } from "../drawer";
 import { Badge } from "../badge";
 import { KubeEventDetails } from "../+events/kube-event-details";
 import { KubeObjectDetailsProps } from "../kube-object";
-import { Service, serviceApi } from "../../api/endpoints";
+import { Service, ServicePort, serviceApi } from "../../api/endpoints";
 import { _i18n } from "../../i18n";
 import { apiManager } from "../../api/api-manager";
 import { KubeObjectMeta } from "../kube-object/kube-object-meta";
@@ -19,23 +19,22 @@ interface Props extends KubeObjectDetailsProps<Service> {
 
 @observer
 export class ServiceDetails extends React.Component<Props> {
-  async portForward(event: React.MouseEvent, port: string) {
+  async portForward(event: React.MouseEvent, port: ServicePort) {
     event.preventDefault();
-    const { object: service } = this.props
-    const targetPort = port.split(":")[0]
 
-    apiBase.post(`/services/${service.getNs()}/${service.getName()}/port-forward/${targetPort}`, {});
+    const { object: service } = this.props;
+    apiBase.post(`/services/${service.getNs()}/${service.getName()}/port-forward/${port.port}`, {});
   }
 
   render() {
     const { object: service } = this.props;
     if (!service) return;
     const { spec } = service;
-    const portBadges = service.getPorts().map((port) => {
+    const portLinks = service.getPorts().map((port) => {
       return([
-        <li><Link to="" title="Open in a browser" onClick={(e) => this.portForward(e, port) }>{port}</Link></li>
+        <li><Link to="" title={_i18n._(t`Open in a browser`)} onClick={(e) => this.portForward(e, port) }>{port.toString()}</Link></li>
       ])
-    })
+    });
     return (
       <div className="ServicesDetails">
         <KubeObjectMeta object={service}/>
@@ -66,7 +65,7 @@ export class ServiceDetails extends React.Component<Props> {
 
         <DrawerItem name={<Trans>Ports</Trans>}>
           <ul className="portList">
-            {portBadges}
+            {portLinks}
           </ul>
         </DrawerItem>
 

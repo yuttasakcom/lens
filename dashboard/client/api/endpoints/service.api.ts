@@ -2,6 +2,28 @@ import { autobind } from "../../utils";
 import { KubeObject } from "../kube-object";
 import { KubeApi } from "../kube-api";
 
+export interface IServicePort {
+  name?: string;
+  protocol: string;
+  port: number;
+  targetPort: number;
+}
+
+export class ServicePort implements IServicePort {
+  name?: string;
+  protocol: string;
+  port: number;
+  targetPort: number;
+
+  constructor(data: IServicePort) {
+    Object.assign(this, data)
+  }
+
+  toString() {
+    return `${this.port}${this.port === this.targetPort ? "" : ":" + this.targetPort}/${this.protocol}`;
+  }
+}
+
 @autobind()
 export class Service extends KubeObject {
   static kind = "Service"
@@ -13,7 +35,7 @@ export class Service extends KubeObject {
     loadBalancerIP?: string;
     sessionAffinity: string;
     selector: { [key: string]: string };
-    ports: { name?: string; protocol: string; port: number; targetPort: number }[];
+    ports: ServicePort[];
     externalIPs?: string[]; // https://kubernetes.io/docs/concepts/services-networking/service/#external-ips
   }
 
@@ -47,11 +69,9 @@ export class Service extends KubeObject {
     return Object.entries(this.spec.selector).map(val => val.join("="));
   }
 
-  getPorts(): string[] {
+  getPorts(): ServicePort[] {
     const ports = this.spec.ports || [];
-    return ports.map(({ port, protocol, targetPort }) => {
-      return `${port}${port === targetPort ? "" : ":" + targetPort}/${protocol}`
-    })
+    return ports.map(p => new ServicePort(p));
   }
 
   getLoadBalancer() {
